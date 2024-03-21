@@ -30,6 +30,11 @@ td {
     border: 5px solid white;
     text-align: center;
     font-size: 2em;
+    cursor: pointer;
+}
+
+td:hover {
+    background-color: rgba(192, 192, 192, 0.1);
 }
 
 tr {

@@ -10,7 +10,7 @@ let fields = [
     null,
 ];
 
-function init(){
+function init() {
     render();
 }
 
@@ -26,9 +26,9 @@ function render() {
             const cell = document.createElement('td');
             const index = i * 3 + j;
             if (fields[index] === 'circle') {
-                cell.textContent = 'O';
+                cell.innerHTML = generateCircleSVG();
             } else if (fields[index] === 'cross') {
-                cell.textContent = 'X';
+                cell.innerHTML = generateCrossSVG();
             }
             row.appendChild(cell);
         }
@@ -38,4 +38,41 @@ function render() {
 
     container.innerHTML = '';
     container.appendChild(table);
+}
+
+function generateCircleSVG() {
+    const color = '#00B0EF';
+    const diameter = 56; // Durchmesser = Radius * 2 + Stroke Width
+    const strokeWidth = 3; // Stroke Width
+    const animationDuration = 0.125; // Animation Geschwindigkeit in Sekunden (125ms)
+
+    const svgCode = `
+        <svg width="${diameter}" height="${diameter}" viewBox="0 0 ${diameter} ${diameter}" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="${diameter / 2}" cy="${diameter / 2}" r="${(diameter - strokeWidth) / 2}" fill="none" stroke="${color}" stroke-width="${strokeWidth}">
+                <animate attributeName="r" from="0" to="${(diameter - strokeWidth) / 2}" dur="${animationDuration}s" fill="freeze" />
+            </circle>
+        </svg>
+    `;
+
+    return svgCode;
+}
+
+function generateCrossSVG() {
+    const color = '#FFC000'; 
+    const diameter = 56;
+    const strokeWidth = 3; 
+    const animationDuration = 0.125; 
+
+    const svgCode = `
+        <svg width="${diameter}" height="${diameter}" viewBox="0 0 ${diameter} ${diameter}" xmlns="http://www.w3.org/2000/svg">
+            <line x1="${strokeWidth}" y1="${diameter - strokeWidth}" x2="${diameter - strokeWidth}" y2="${strokeWidth}" stroke="${color}" stroke-width="${strokeWidth}">
+                <animate attributeName="opacity" from="0" to="1" dur="${animationDuration}s" fill="freeze" />
+            </line>
+            <line x1="${diameter - strokeWidth}" y1="${diameter - strokeWidth}" x2="${strokeWidth}" y2="${strokeWidth}" stroke="${color}" stroke-width="${strokeWidth}">
+                <animate attributeName="opacity" from="0" to="1" dur="${animationDuration}s" fill="freeze" />
+            </line>
+        </svg>
+    `;
+
+    return svgCode;
 }

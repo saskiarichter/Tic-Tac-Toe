@@ -22,17 +22,14 @@ function render() {
 
     for (let i = 0; i < 3; i++) {
         const row = document.createElement('tr');
-
         for (let j = 0; j < 3; j++) {
             const cell = document.createElement('td');
             const index = i * 3 + j;
             cell.onclick = function() { handleClick(index, this); };
             row.appendChild(cell);
         }
-
         table.appendChild(row);
     }
-
     container.innerHTML = '';
     container.appendChild(table);
 }
@@ -104,8 +101,7 @@ function checkGameStatus() {
         }
     }
 
-    // Es gibt keinen Gewinner, das Spiel geht weiter
-    return null;
+    return null;  // Es gibt keinen Gewinner, das Spiel geht weiter
 }
 
 function drawWinningLine(combination) {
@@ -140,5 +136,19 @@ function drawWinningLine(combination) {
     document.getElementById('content').appendChild(svg);
 }
 
+function restartGame() {
+    // Setze das 'fields'-Array zurück, um ein neues Spiel zu starten
+    fields = [
+        null, null, null,
+        null, null, null,
+        null, null, null
+    ];
+
+    // Setze das 'nextSymbol' zurück, um mit 'cross' zu starten
+    nextSymbol = 'cross';
+
+    // Rendere das Spielbrett neu, um das neue Spiel anzuzeigen
+    render();
+}
 
 

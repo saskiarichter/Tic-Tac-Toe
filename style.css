@@ -12,6 +12,8 @@ body {
 
 h1 {
     text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
 
 #content {
@@ -24,6 +26,7 @@ table {
     height: 300px;
     border-style: hidden;
 }
+
 td {
     width: 33.33%; 
     padding: 0;
@@ -39,4 +42,20 @@ td:hover {
 
 tr {
     height: 33.33%; 
+}
+
+button {
+    margin-top: 100px;
+    padding: 10px 20px;
+    background-color: #3a613b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #4c7c53;
 }
